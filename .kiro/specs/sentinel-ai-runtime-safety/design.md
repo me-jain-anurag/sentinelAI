@@ -9,6 +9,84 @@ The design emphasizes three core principles:
 2. **Real-time Performance**: Sub-300ms analysis for responsive user experience
 3. **Extensibility**: Pluggable risk patterns and behavioral models for evolving threats
 
+## Technologies
+
+### Core Language and Runtime
+
+- **Go 1.21+**: Primary implementation language chosen for:
+  - Native concurrency support (goroutines) for parallel pattern matching
+  - Fast compilation and execution for performance requirements
+  - Strong standard library for cryptography, networking, and file operations
+  - Cross-platform support without runtime dependencies
+  - Memory safety and garbage collection for secure processing
+
+### Testing Frameworks
+
+- **gopter**: Property-based testing library for Go
+  - Generates random test cases to verify correctness properties
+  - Minimum 100 iterations per property test
+  - Validates universal properties across all inputs
+
+- **testify**: Assertion and mocking library
+  - Provides readable assertions for unit tests
+  - Mock support for component isolation
+  - Suite support for test organization
+
+### CLI Framework
+
+- **cobra**: Command-line interface framework
+  - Structured command hierarchy (analyze, update, list-patterns, version)
+  - Flag parsing and validation
+  - Help text generation
+  - Interactive mode support
+
+### Cryptography and Security
+
+- **crypto/sha256**: Standard library package for update verification
+  - Checksum calculation for integrity verification
+  - Signature validation for update packages
+  - No external dependencies for security-critical operations
+
+### Data Serialization
+
+- **encoding/json**: Standard library JSON support
+  - Pattern and model serialization
+  - Configuration file parsing
+  - Update package format
+  - Zero external dependencies
+
+### Concurrency Primitives
+
+- **sync**: Standard library synchronization
+  - Mutex for thread-safe session management
+  - WaitGroup for parallel pattern evaluation
+  - Atomic operations for performance counters
+
+### Storage
+
+- **Local file system**: Pattern and model storage
+  - No database dependencies for simplicity
+  - JSON files for human-readable patterns
+  - Directory-based organization
+  - No persistent user data storage
+
+### Development Tools
+
+- **go mod**: Dependency management
+- **go test**: Built-in testing framework
+- **go build**: Native compilation
+- **gofmt/goimports**: Code formatting
+
+### Design Rationale
+
+The technology choices prioritize:
+- **Minimal dependencies**: Reduce attack surface and maintenance burden
+- **Standard library first**: Leverage Go's robust standard library
+- **Performance**: Native compilation and efficient concurrency
+- **Privacy**: No cloud services or external data transmission
+- **Portability**: Cross-platform support without runtime requirements
+- **Security**: Built-in cryptography without third-party libraries
+
 ## Architecture
 
 ### High-Level Architecture
